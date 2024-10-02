@@ -23,6 +23,9 @@ class TrainsTableSeeder extends Seeder
             $train->company = $faker->company();
             $train->departure_station = $faker->randomElement(['Venezia', 'Napoli', 'Torino', 'Genova']);
             $train->arrival_station = $faker->randomElement(['Umbria', 'Vicenza', 'Roma', 'Bari']);
+            $train->departure_time = $faker->dateTimeBetween(['-1 day', '+1 day']);
+            $train->arrival_time = $faker->dateTimeBetween(['+1 day', '+2 day']);
+            $train->train_code = 'ABCDE'.$faker->randomNumber([5, false]);
         }
     }
 }
