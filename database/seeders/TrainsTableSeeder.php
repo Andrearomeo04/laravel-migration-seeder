@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-use App\Model\Train;
+use App\Models\Train;
 use Faker\Generator as Faker;
 
 class TrainsTableSeeder extends Seeder
@@ -23,9 +23,14 @@ class TrainsTableSeeder extends Seeder
             $train->company = $faker->company();
             $train->departure_station = $faker->randomElement(['Venezia', 'Napoli', 'Torino', 'Genova']);
             $train->arrival_station = $faker->randomElement(['Umbria', 'Vicenza', 'Roma', 'Bari']);
-            $train->departure_time = $faker->dateTimeBetween(['-1 day', '+1 day']);
-            $train->arrival_time = $faker->dateTimeBetween(['+1 day', '+2 day']);
-            $train->train_code = 'ABCDE'.$faker->randomNumber([5, false]);
+            $train->departure_time = $faker->dateTimeBetween('-1 day', '+1 day');
+            $train->arrival_time = $faker->dateTimeBetween('+1 day', '+2 day');
+            $train->train_code = 'ABCDE'.$faker->randomNumber(5, false);
+            $train->n_carriages = $faker->randomDigitNotNull();
+            $train->on_time = $faker->boolean();
+            $train->cancelled = $faker->boolean();
+
+            $train->save();
         }
     }
 }
